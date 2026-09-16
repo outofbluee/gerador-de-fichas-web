@@ -19,39 +19,33 @@
             <div class="container">
                 <div class="mb-3">
                     <label for="nomeDoPaciente" class="form-label">Nome do Paciente</label>
-                    <input type="text" class="form-control" id="nomeDoPaciente">
+                    <input type="text" class="form-control" id="nomeDoPaciente" required>
                 </div>
                 <div class="mb-3">
                     <label for="dataDaConsulta" class="form-label">Data da Consulta</label>
-                    <input type="date" class="form-control" id="dataDaConsulta">
+                    <input type="date" class="form-control" id="dataDaConsulta" required>
                 </div>
                 <div class="mb-3">
                     <label for="horarioDaConsulta" class="form-label">Horário da Consulta</label>
-                    <input type="time" class="form-control" id="horarioDaConsulta" lang="pt-BR">
+                    <input type="time" class="form-control" id="horarioDaConsulta" lang="pt-BR" required>
                 </div>
                 <div class="mb-3">
                     <label for="nomeDoMedico" class="form-label">Nome do Médico</label>
-                    <input type="text" class="form-control" id="nomeDoMedico">
+                    <input type="text" class="form-control" id="nomeDoMedico" required>
                 </div>
                 <div class="mb-3">
                     <label for="nomeDoAgenteDeSaude" class="form-label">Nome do Agente de Saúde</label>
-                    <input type="text" class="form-control" id="nomeDoAgenteDeSaude">
+                    <input type="text" class="form-control" id="nomeDoAgenteDeSaude" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Gerar Ficha</button>
             </div>
         </form>
 
-        <div class="container visualizacao-ficha">
-            <img id="fichaGerada" alt="Ficha gerada" height="200px">
-            <div>
-                <button type="button" class="btn btn-primary" id="baixarFicha">
-                    Baixar ficha
-                </button>
-            </div>
-        </div>
+        <div class="container visualizacao-ficha" id="visualizacaoFicha"></div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>

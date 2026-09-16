@@ -1,5 +1,3 @@
-const API_URL = "https://gerador-de-fichas-java-backend.onrender.com";
-
 const formulario = document.getElementById("fichaForm");
 
 const nomeDoPaciente = document.getElementById("nomeDoPaciente");
@@ -7,12 +5,7 @@ const dataDaConsulta = document.getElementById("dataDaConsulta");
 const horarioDaConsulta = document.getElementById("horarioDaConsulta");
 const nomeDoMedico = document.getElementById("nomeDoMedico");
 const nomeDoAgenteDeSaude = document.getElementById("nomeDoAgenteDeSaude");
-
-const fichaGerada = document.getElementById("fichaGerada");
-const baixarFichaBtn = document.getElementById("baixarFicha");
-
-let imagemUrl;
-
+const visualizacaoFicha = document.getElementById("visualizacaoFicha");
 
 formulario.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -20,18 +13,12 @@ formulario.addEventListener("submit", function(event) {
     gerar();
 });
 
-baixarFichaBtn.addEventListener("click", function() {
-    if (imagemUrl !== null) {
-        const link = document.createElement("a");
-
-        link.href = imagemUrl;
-        link.download = "ficha.png";
-
-        link.click();
-    };
-});
-
 function gerar() {
+    if (!formulario.checkValidity()) {
+        formulario.reportValidity();
+        return null;
+    }
+
     const ficha = {
         nomeDoPaciente: nomeDoPaciente.value,
         dataDaConsulta: dataDaConsulta.value,
@@ -40,22 +27,49 @@ function gerar() {
         nomeDoAgenteDeSaude: nomeDoAgenteDeSaude.value
     };
 
-    fetch(`${API_URL}/api/v1/fichas`, 
-    {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(ficha)
-    })
-    .then(response => {
-        return response.blob();
-    })
-    .then(blob => {
-        imagemUrl = URL.createObjectURL(blob);
-        fichaGerada.src = imagemUrl;
-    })
-    .catch(error => {
-        console.error(error);
+    visualizacaoFicha.replaceChildren();
+
+    const dataFormatada = formatarData(ficha.dataDaConsulta);
+    const diaDaSemana = obterDiaDaSemana(ficha.dataDaConsulta);
+    const blocosDaFicha = [
+        [`Sr(a) ${ficha.nomeDoPaciente}`],
+        ["Sua consulta foi agendada:"],
+        [
+            `Data: ${dataFormatada} (${diaDaSemana})`,
+            `Horário: ${ficha.horarioDaConsulta} h por ordem de chegada`,
+            `Médico(a): ${ficha.nomeDoMedico}`,
+            `Agente de saúde: ${ficha.nomeDoAgenteDeSaude}`
+        ],
+        ["Ao chegar na recepção informe o nome de seu agente de saúde."],
+        ["Documento de identificação com foto, CPF e cartão do SUS, se tiver."],
+        ["Caso não possa comparecer, avise com antecedência!"]
+    ];
+
+    blocosDaFicha.forEach(function(linhasDoBloco) {
+        const bloco = document.createElement("section");
+        bloco.className = "ficha-bloco";
+
+        linhasDoBloco.forEach(function(linha) {
+            const linhaDaFicha = document.createElement("div");
+            linhaDaFicha.textContent = linha;
+            bloco.appendChild(linhaDaFicha);
+        });
+
+        visualizacaoFicha.appendChild(bloco);
     });
+
+    return ficha;
+}
+
+function formatarData(data) {
+    const [ano, mes, dia] = data.split("-");
+
+    return `${dia}/${mes}/${ano}`;
+}
+
+function obterDiaDaSemana(data) {
+    const [ano, mes, dia] = data.split("-");
+    const dataDaConsulta = new Date(Number(ano), Number(mes) - 1, Number(dia));
+
+    return dataDaConsulta.toLocaleDateString("pt-BR", { weekday: "long" });
 }

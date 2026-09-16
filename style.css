@@ -3,3 +3,11 @@
     flex-direction: column;
     margin-top: 4rem;
 }
+
+.ficha-bloco {
+    margin-bottom: 1rem;
+}
+
+.ficha-bloco:last-child {
+    margin-bottom: 0;
+}
