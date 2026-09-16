@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <title>Gerador de Fichas</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gerador de Fichas</h1>
+        </div>
+    </header>
+
+    <main>
+        <form class="form" id="fichaForm">
+            <div class="container">
+                <div class="mb-3">
+                    <label for="nomeDoPaciente" class="form-label">Nome do Paciente</label>
+                    <input type="text" class="form-control" id="nomeDoPaciente">
+                </div>
+                <div class="mb-3">
+                    <label for="dataDaConsulta" class="form-label">Data da Consulta</label>
+                    <input type="date" class="form-control" id="dataDaConsulta">
+                </div>
+                <div class="mb-3">
+                    <label for="horarioDaConsulta" class="form-label">Horário da Consulta</label>
+                    <input type="time" class="form-control" id="horarioDaConsulta" lang="pt-BR">
+                </div>
+                <div class="mb-3">
+                    <label for="nomeDoMedico" class="form-label">Nome do Médico</label>
+                    <input type="text" class="form-control" id="nomeDoMedico">
+                </div>
+                <div class="mb-3">
+                    <label for="nomeDoAgenteDeSaude" class="form-label">Nome do Agente de Saúde</label>
+                    <input type="text" class="form-control" id="nomeDoAgenteDeSaude">
+                </div>
+                <button type="submit" class="btn btn-primary">Gerar Ficha</button>
+            </div>
+        </form>
+
+        <div class="container visualizacao-ficha">
+            <img id="fichaGerada" alt="Ficha gerada" height="200px">
+            <div>
+                <button type="button" class="btn btn-primary" id="baixarFicha">
+                    Baixar ficha
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
