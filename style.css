@@ -7,6 +7,7 @@
 }
 
 .ficha {
+    position: relative;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -14,6 +15,24 @@
     height: 400px;
     aspect-ratio: 13 / 8;
     padding: 2rem;
+    background-color: var(--cor-equipe-fundo);
+}
+
+.ficha-equipe {
+    align-self: flex-end;
+    color: var(--cor-equipe-texto);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.ficha-fita-outubro-rosa {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
 }
 
 .visualizacao-ficha .ficha {

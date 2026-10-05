@@ -5,6 +5,11 @@ const dataDaConsulta = document.getElementById("dataDaConsulta");
 const horarioDaConsulta = document.getElementById("horarioDaConsulta");
 const nomeDoMedico = document.getElementById("nomeDoMedico");
 const nomeDoAgenteDeSaude = document.getElementById("nomeDoAgenteDeSaude");
+const equipe = document.getElementById("equipe");
+const configuracaoDaEquipe = {
+    corFundo: "#FDF2F8",
+    corTexto: "#9D174D"
+};
 const visualizacaoFicha = document.getElementById("visualizacaoFicha");
 const fichaParaCaptura = document.getElementById("fichaParaCaptura");
 const baixarFicha = document.getElementById("baixarFicha");
@@ -29,7 +34,8 @@ function gerar() {
         dataDaConsulta: dataDaConsulta.value,
         horarioDaConsulta: horarioDaConsulta.value,
         nomeDoMedico: nomeDoMedico.value,
-        nomeDoAgenteDeSaude: nomeDoAgenteDeSaude.value
+        nomeDoAgenteDeSaude: nomeDoAgenteDeSaude.value,
+        equipe: equipe.value
     };
 
     baixarFicha.disabled = true;
@@ -50,6 +56,20 @@ function gerar() {
 function criarFicha(ficha) {
     const fichaElement = document.createElement("article");
     fichaElement.className = "ficha";
+    fichaElement.style.setProperty("--cor-equipe-fundo", configuracaoDaEquipe.corFundo);
+    fichaElement.style.setProperty("--cor-equipe-texto", configuracaoDaEquipe.corTexto);
+
+    const fitaOutubroRosa = document.createElement("img");
+    fitaOutubroRosa.className = "ficha-fita-outubro-rosa";
+    fitaOutubroRosa.src = "./assets/images/fita-outubro-rosa.png";
+    fitaOutubroRosa.alt = "";
+    fitaOutubroRosa.setAttribute("aria-hidden", "true");
+    fichaElement.appendChild(fitaOutubroRosa);
+
+    const identificadorDaEquipe = document.createElement("div");
+    identificadorDaEquipe.className = "ficha-equipe";
+    identificadorDaEquipe.textContent = (ficha.equipe || "").toUpperCase();
+    fichaElement.appendChild(identificadorDaEquipe);
 
     const dataFormatada = formatarData(ficha.dataDaConsulta);
     const diaDaSemana = obterDiaDaSemana(ficha.dataDaConsulta);
