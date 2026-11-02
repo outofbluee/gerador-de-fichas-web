@@ -59,13 +59,6 @@ function criarFicha(ficha) {
     fichaElement.style.setProperty("--cor-equipe-fundo", configuracaoDaEquipe.corFundo);
     fichaElement.style.setProperty("--cor-equipe-texto", configuracaoDaEquipe.corTexto);
 
-    const fitaOutubroRosa = document.createElement("img");
-    fitaOutubroRosa.className = "ficha-fita-outubro-rosa";
-    fitaOutubroRosa.src = "./assets/images/fita-outubro-rosa.png";
-    fitaOutubroRosa.alt = "";
-    fitaOutubroRosa.setAttribute("aria-hidden", "true");
-    fichaElement.appendChild(fitaOutubroRosa);
-
     const identificadorDaEquipe = document.createElement("div");
     identificadorDaEquipe.className = "ficha-equipe";
     identificadorDaEquipe.textContent = (ficha.equipe || "").toUpperCase();
