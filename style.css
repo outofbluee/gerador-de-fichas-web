@@ -267,7 +267,7 @@ select {
 }
 
 .form-note {
-    margin: 12px 2px 0;
+    margin: 0px 2px 0;
     color: var(--color-muted);
     font-size: 12px;
 }
